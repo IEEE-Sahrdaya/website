@@ -24,6 +24,7 @@ const Title = styled.h1`
   font-weight: bold;
   color: #2563eb;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 `;
 
 const EventImage = styled.img`
