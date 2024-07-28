@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const StyledH1 = styled.h1`
   margin-top: 2rem;
@@ -14,12 +15,50 @@ const StyledH1 = styled.h1`
   color: #2563eb;
 `;
 
+const AboutSectionContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
+const ContentContainer = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+`;
+
+const TextContainer = styled.div`
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 1rem;
+`;
+
+const ImageContainer = styled(motion.div)`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
+`;
+
 function AboutSection() {
   return (
-    <div className="flex flex-col items-center justify-center w-full ">
+    <AboutSectionContainer
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+    >
       <StyledH1>About Us</StyledH1>
-      <div className="flex justify-center items-center h-auto w-full">
-        <div className=" h-auto flex justify-center items-center w-1/2 px-4">
+      <ContentContainer>
+        <TextContainer>
           <p className="text-black text-sm md:text-lg lg:text-lg leading-relaxed">
             IEEE Sahrdaya is a dynamic space where connections flourish and
             growth takes root. We offer an inviting environment that encourages
@@ -35,19 +74,21 @@ function AboutSection() {
             collaboration, and empowerment, as we collectively shape the
             ever-evolving landscape of technology and its impact on society.
           </p>
-        </div>
-        <div className="hidden md:flex md:justify-center md:px-4 w-1/2">
-          <div className="flex justify-center px-4">
-            <Image
-              src="/images/AboutIMG.jpg"
-              alt="About"
-              width={3000}
-              height={1200}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+        </TextContainer>
+        <ImageContainer
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <Image
+            src="/images/AboutIMG.jpg"
+            alt="About"
+            width={3000}
+            height={1000}
+          />
+        </ImageContainer>
+      </ContentContainer>
+    </AboutSectionContainer>
   );
 }
 

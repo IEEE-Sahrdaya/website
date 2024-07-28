@@ -26,7 +26,7 @@ export default function App() {
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         modules={[Pagination, Autoplay]}
-        className="w-full h-full rounded-lg"
+        className="w-full h-full rounded-lg "
       >
         {images.map((src, index) => (
           <SwiperSlide key={index} className="flex items-center justify-center">
