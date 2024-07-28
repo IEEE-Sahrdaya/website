@@ -65,6 +65,7 @@ function LatestEventSection() {
       initial={{ opacity: 0, y: -20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
+      id="events"
     >
       <Title>Latest Events</Title>
       <CarouselContainer>
