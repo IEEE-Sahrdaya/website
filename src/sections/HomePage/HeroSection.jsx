@@ -20,7 +20,7 @@ export default function App() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="overflow-hidden w-full h-[70vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] rounded-lg"
+      className="overflow-hidden w-full h-[70vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] rounded-lg px-3"
     >
       <Swiper
         pagination={{ clickable: true }}

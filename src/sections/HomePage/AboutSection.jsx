@@ -1,15 +1,26 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import styled from "styled-components";
+
+const StyledH1 = styled.h1`
+  margin-top: 2rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+  padding: 0 1rem;
+  font-size: 1.8rem;
+  color: #2563eb;
+`;
 
 function AboutSection() {
   return (
-    <div className="flex flex-col items-center justify-center w-full">
-        <h1 className="text-4xl font-bold text-black p-4">About Us</h1>
-
-
+    <div className="flex flex-col items-center justify-center w-full ">
+      <StyledH1>About Us</StyledH1>
       <div className="flex justify-center items-center h-auto w-full">
-        <div className="bg-black h-auto flex justify-center items-center w-1/2 p-4">
-          <p className="text-black text-lg p-4 ">
+        <div className=" h-auto flex justify-center items-center w-1/2 px-4">
+          <p className="text-black text-sm md:text-lg lg:text-lg leading-relaxed">
             IEEE Sahrdaya is a dynamic space where connections flourish and
             growth takes root. We offer an inviting environment that encourages
             networking and the forging of meaningful professional relationships.
@@ -25,7 +36,7 @@ function AboutSection() {
             ever-evolving landscape of technology and its impact on society.
           </p>
         </div>
-        <div className="auto p-4">
+        <div className="hidden md:flex md:justify-center md:px-4 w-1/2">
           <div className="flex justify-center px-4">
             <Image
               src="/images/AboutIMG.jpg"
