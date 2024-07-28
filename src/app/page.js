@@ -3,7 +3,7 @@ import AboutSection from "@/sections/HomePage/AboutSection";
 import HeroSection from "@/sections/HomePage/HeroSection";
 import InformantSection from "@/sections/HomePage/InformantSection";
 import LatestEventSection from "@/sections/HomePage/LatestEventSection";
-import Societies from "@/sections/Societies";
+import Societies from "@/sections/HomePage/Societies";
 import React from "react";
 
 const Home = () => {
