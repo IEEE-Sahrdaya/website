@@ -21,11 +21,15 @@ const AboutSectionContainer = styled(motion.div)`
   align-items: center;
   justify-content: center;
   width: 100%;
+  @media (min-width: 768px) {
+    padding: 2.4rem;
+  }
 `;
 
 const ContentContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
+  gap: 3rem;
   align-items: center;
   height: auto;
   width: 100%;
@@ -36,8 +40,11 @@ const TextContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   padding: 1rem;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const ImageContainer = styled(motion.div)`

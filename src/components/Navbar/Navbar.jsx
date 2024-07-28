@@ -139,7 +139,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <motion.a
             href="/join-ieee"
-            className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg"
+            className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
