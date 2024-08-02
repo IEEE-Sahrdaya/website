@@ -15,7 +15,7 @@ const StyledH1 = styled.h1`
   color: #2563eb;
 `;
 
-const AboutSectionContainer = styled(motion.div)`
+const SectionContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,31 +56,18 @@ const ImageContainer = styled(motion.div)`
   }
 `;
 
-function AboutSection() {
+function AboutSection({ title, textContent, imageSrc }) {
   return (
-    <AboutSectionContainer
-    id="about"
+    <SectionContainer
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <StyledH1>About Us</StyledH1>
+      <StyledH1>{title}</StyledH1>
       <ContentContainer>
         <TextContainer>
           <p className="text-black text-sm md:text-lg lg:text-lg leading-relaxed">
-            IEEE Sahrdaya is a dynamic space where connections flourish and
-            growth takes root. We offer an inviting environment that encourages
-            networking and the forging of meaningful professional relationships.
-            Our diverse range of events is meticulously designed to amplify both
-            leadership and technical skills. From engaging workshops and
-            enlightening seminars to spirited technical competitions, we provide
-            a pathway for members to excel and innovate. As a community, we are
-            dedicated to nurturing the latent potential of each individual.
-            Through interactive experiences and knowledge-sharing, we strive to
-            kindle the flames of creativity and ingenuity. Join us at IEEE
-            Sahrdaya to embark on an exciting journey of learning,
-            collaboration, and empowerment, as we collectively shape the
-            ever-evolving landscape of technology and its impact on society.
+            {textContent}
           </p>
         </TextContainer>
         <ImageContainer
@@ -89,14 +76,14 @@ function AboutSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <Image
-            src="/images/AboutIMG.jpg"
-            alt="About"
+            src={imageSrc}
+            alt={title}
             width={3000}
             height={1000}
           />
         </ImageContainer>
       </ContentContainer>
-    </AboutSectionContainer>
+    </SectionContainer>
   );
 }
 

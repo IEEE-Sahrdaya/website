@@ -46,14 +46,7 @@ const EventImage = styled.img`
   border-radius: 8px;
 `;
 
-function LatestEventSection() {
-  const latestEvent = [
-    { eventId: 1, eventImg: "/images/Events/Event-IMG1.png" },
-    { eventId: 2, eventImg: "/images/Events/Event-IMG1.png" },
-    { eventId: 3, eventImg: "/images/Events/Event-IMG1.png" },
-    { eventId: 4, eventImg: "/images/Events/Event-IMG1.png" },
-  ];
-
+function LatestEventSection({ title, events }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -67,7 +60,7 @@ function LatestEventSection() {
       transition={{ duration: 0.5 }}
       id="events"
     >
-      <Title>Latest Events</Title>
+      <Title>{title}</Title>
       <CarouselContainer>
         <Swiper
           modules={[Pagination, Autoplay]}
@@ -87,7 +80,7 @@ function LatestEventSection() {
             },
           }}
         >
-          {latestEvent.map((event) => (
+          {events.map((event) => (
             <SwiperSlide key={event.eventId}>
               <EventImage src={event.eventImg} alt={`Event ${event.eventId}`} />
             </SwiperSlide>
