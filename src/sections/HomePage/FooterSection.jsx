@@ -1,8 +1,10 @@
 import React from "react";
 
+
 function FooterSection() {
+
   return (
-    <div className="bg-[#222222] text-white py-8">
+    <div className="bg-[#222222] text-white py-8 mt-2 md:mt-5">
       <div className="container mx-auto flex flex-wrap justify-around">
         <div className="flex flex-col justify-center items-center mb-6">
           <div className="logo mb-4">
