@@ -1,16 +1,35 @@
 "use client";
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const societies = [
-  'Society 1', 'Society 2', 'Society 3', 'Society 4',
-  'Society 5', 'Society 6', 'Society 7', 'Society 8',
-  'Society 9', 'Society 10', 'Society 11', 'Society 12',
-  'Society 13', 'Society 14', 'Society 15', 'Society 16',
-  'Society 17', 'Society 18', 'Society 19', 'Society 20',
-  'Society 21', 'Society 22', 'Society 23', 'Society 24'
+  "Society 1",
+  "Society 2",
+  "Society 3",
+  "Society 4",
+  "Society 5",
+  "Society 6",
+  "Society 7",
+  "Society 8",
+  "Society 9",
+  "Society 10",
+  "Society 11",
+  "Society 12",
+  "Society 13",
+  "Society 14",
+  "Society 15",
+  "Society 16",
+  "Society 17",
+  "Society 18",
+  "Society 19",
+  "Society 20",
+  "Society 21",
+  "Society 22",
+  "Society 23",
+  "Society 24",
 ];
 
 const NavLink = ({ href, children, onClick }) => (
@@ -40,17 +59,17 @@ const Navbar = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.1,
-        staggerChildren: 0.05
-      }
-    }
+        staggerChildren: 0.05,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
+      opacity: 1,
+    },
   };
 
   const toggleMobileMenu = () => {
@@ -73,14 +92,22 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Left: Logo */}
         <div className="flex items-center">
-          <img src="/images/IEEE Sahrdaya Logo.jpg" alt="IEEE Logo" className="h-12" />
+          <Image
+            src="/images/IEEE Sahrdaya Logo.jpg"
+            alt="IEEE Logo"
+            className="h-12"
+            width={0}
+            height={0}
+            sizes="10rem"
+            style={{ width: "100%", height: "auto" }}
+          />
         </div>
 
         {/* Center: Navigation Links (Desktop) */}
         <div className="hidden md:flex flex-grow justify-center space-x-8 relative">
-          <NavLink href="/about">About Us</NavLink>
-          <NavLink href="/events">Events</NavLink>
-          <div 
+          <NavLink href="#about">About Us</NavLink>
+          <NavLink href="#events">Events</NavLink>
+          <div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -107,7 +134,7 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="grid grid-cols-1 gap-2 p-4 max-h-80 overflow-y-auto scrollbar-hide"
                     variants={containerVariants}
                     initial="hidden"
@@ -116,7 +143,9 @@ const Navbar = () => {
                     {societies.map((society, index) => (
                       <motion.a
                         key={index}
-                        href={`/societies/${society.toLowerCase().replace(/\s+/g, '-')}`}
+                        href={`/societies/${society
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
                         className="text-blue-600 hover:text-blue-900 block p-2 hover:bg-gray-100"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05, originX: 0 }}
@@ -139,7 +168,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <motion.a
             href="/join-ieee"
-            className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg"
+            className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -160,13 +189,17 @@ const Navbar = () => {
           <motion.div
             className="md:hidden bg-white shadow-lg"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
             <div className="flex flex-col p-4 space-y-4">
-              <NavLink href="/about" onClick={toggleMobileMenu}>About Us</NavLink>
-              <NavLink href="/events" onClick={toggleMobileMenu}>Events</NavLink>
+              <NavLink href="#about" onClick={toggleMobileMenu}>
+                About Us
+              </NavLink>
+              <NavLink href="#events" onClick={toggleMobileMenu}>
+                Events
+              </NavLink>
               <motion.button
                 className="text-blue-600 hover:text-blue-900 text-lg focus:outline-none flex items-center justify-between"
                 onClick={toggleSocieties}
@@ -184,14 +217,16 @@ const Navbar = () => {
                   <motion.div
                     className="pl-4 space-y-2"
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
+                    animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                   >
                     {societies.map((society, index) => (
                       <motion.a
                         key={index}
-                        href={`/societies/${society.toLowerCase().replace(/\s+/g, '-')}`}
+                        href={`/societies/${society
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
                         className="text-blue-600 hover:text-blue-900 block"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05, originX: 0 }}
@@ -204,9 +239,15 @@ const Navbar = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-              <NavLink href="/execom" onClick={toggleMobileMenu}>Execom</NavLink>
-              <NavLink href="/gallery" onClick={toggleMobileMenu}>Gallery</NavLink>
-              <NavLink href="/contact" onClick={toggleMobileMenu}>Contact Us</NavLink>
+              <NavLink href="/execom" onClick={toggleMobileMenu}>
+                Execom
+              </NavLink>
+              <NavLink href="/gallery" onClick={toggleMobileMenu}>
+                Gallery
+              </NavLink>
+              <NavLink href="/contact" onClick={toggleMobileMenu}>
+                Contact Us
+              </NavLink>
               <motion.a
                 href="/join-ieee"
                 className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg text-center"

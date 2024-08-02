@@ -34,7 +34,8 @@ const Statistic = styled(motion.p)`
 `;
 
 const Label = styled.p`
-  font-size: 1rem; 
+  font-size: 1.2rem; 
+  font-weight: 500;
   margin: 0.5rem 0 1rem 0;
 `;
 
@@ -71,7 +72,7 @@ function InformantSection() {
       <FlexContainer>
         <FlexColumn>
           <CountUp target={1000}/>
-          <Label>Membership-count</Label>
+          <Label>Membership Count</Label>
           <CountUp target={50} />
           <Label>Professional Members</Label>
         </FlexColumn>

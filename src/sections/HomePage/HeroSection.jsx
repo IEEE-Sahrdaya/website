@@ -20,20 +20,31 @@ export default function App() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="overflow-hidden w-full h-[70vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] rounded-lg px-3"
+      className="overflow-hidden w-full md:h-96 rounded-lg px-3 mx-auto "
     >
       <Swiper
         pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay]}
-        className="w-full h-full rounded-lg "
+        className="w-full md:h-full rounded-lg"
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 1,
+          },
+          1024: {
+            slidesPerView: 1,
+          },
+        }}
       >
         {images.map((src, index) => (
           <SwiperSlide key={index} className="flex items-center justify-center">
             <motion.img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-auto mx-auto h-56 md:h-96 object-cover rounded-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
