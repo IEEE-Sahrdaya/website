@@ -56,10 +56,8 @@ export const createEvent = async (formData, Poster) => {
 export const deleteEvent = async (eventId) => {
   try {
     await deleteDoc(doc(db, "events", eventId));
-    console.log("Event successfully deleted!");
     return true;
   } catch (error) {
-    console.error("Error deleting event: ", error);
     return false;
   }
 };
@@ -94,9 +92,48 @@ export const fetchAllEvents = (handleEventsUpdate) => {
       events.push({ id: eventId, ...eventData });
     });
 
-    // Sort events by date, most recent first
     events.sort((a, b) => new Date(b.date) - new Date(a.date));
 
+    handleEventsUpdate(events);
+  });
+};
+
+export const createPerson = async (formData, Picture) => {
+  const timestamp = Date.now();
+  const fileName = `members/${timestamp}.${Picture.name.split(".")[1]}`;
+  const fileRef = ref(storage, fileName);
+  try {
+    await uploadBytes(fileRef, Picture);
+    const fileLink = await getDownloadURL(fileRef);
+    const updatedFormData = { ...formData, mediaPath: fileLink };
+    await addDoc(collection(db, "members"), updatedFormData);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const deletePerson = async (personId) => {
+  try {
+    await deleteDoc(doc(db, "members", personId));
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const fetchPeopleBySociety = (society, handleEventsUpdate) => {
+  const Membersref = collection(db, "members");
+  const q = query(Membersref, where("society", "==", society));
+
+  return onSnapshot(q, (querySnapshot) => {
+    const events = [];
+
+    querySnapshot.forEach((eventDoc) => {
+      const eventData = eventDoc.data();
+      const eventId = eventDoc.id;
+      events.push({ id: eventId, ...eventData });
+    });
+    // Sort events by date, most recent first
     handleEventsUpdate(events);
   });
 };
