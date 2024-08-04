@@ -10,6 +10,7 @@ import Societies from "@/sections/HomePage/Societies";
 import React, { useEffect, useState } from "react";
 import { AboutSectionData } from "./data";
 import { fetchAllEvents } from "@/utils/FirebaseFunctions";
+import ExecomSection from "@/sections/HomePage/ExecomSection";
 
 const Home = () => {
   const [aboutsectionData, setAboutSectionData] = useState(AboutSectionData);
@@ -31,6 +32,7 @@ const Home = () => {
         <InformantSection />
         <LatestEventSection title="Latest Events" events={latestsectionData} />
         <Societies />
+        <ExecomSection />
         <FooterSection />
       </div>
     </div>
