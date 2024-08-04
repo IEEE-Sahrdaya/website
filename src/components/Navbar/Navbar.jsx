@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const societies = [
   "Society 1",
@@ -165,7 +165,15 @@ const Navbar = () => {
         </div>
 
         {/* Right: Join Button (Desktop) and Hamburger Menu (Mobile) */}
-        <div className="flex items-center">
+        <div className="flex gap-4 items-center">
+          <motion.a
+            href="/signin"
+            className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 text-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Sign In
+          </motion.a>
           <motion.a
             href="/join-ieee"
             className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 text-lg"
@@ -248,6 +256,15 @@ const Navbar = () => {
               <NavLink href="/contact" onClick={toggleMobileMenu}>
                 Contact Us
               </NavLink>
+              <motion.a
+                href="/signin"
+                className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg text-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleMobileMenu}
+              >
+                Sign In
+              </motion.a>
               <motion.a
                 href="/join-ieee"
                 className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg text-center"

@@ -44,12 +44,16 @@ const StyledLink = styled(Link)`
   display: block;
 `;
 
-const Sidebar = ({ links }) => {
+const Sidebar = () => {
   const pathname = usePathname();
-
+  const sidebarLinks = [
+    { href: "/dashboard", label: "Events" },
+    { href: "/dashboard/people", label: "People" },
+    // Add more links as needed
+  ];
   return (
     <SidebarContainer>
-      {links.map((link, index) => (
+      {sidebarLinks.map((link, index) => (
         <Tab key={index} active={`${pathname === link.href}`}>
           <StyledLink href={link.href}>{link.label}</StyledLink>
         </Tab>

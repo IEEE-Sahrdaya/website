@@ -1,16 +1,15 @@
 "use client";
 
-import React from "react";
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import "swiper/css/pagination";
 
 const CarouselContainer = styled.div`
   width: 90%;
@@ -46,7 +45,7 @@ const EventImage = styled.img`
   border-radius: 8px;
 `;
 
-function LatestEventSection({ title, events }) {
+function LatestEventSection({ events, title }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -81,8 +80,9 @@ function LatestEventSection({ title, events }) {
           }}
         >
           {events.map((event) => (
-            <SwiperSlide key={event.eventId}>
-              <EventImage src={event.eventImg} alt={`Event ${event.eventId}`} />
+            <SwiperSlide key={event.id}>
+              <EventImage src={event.mediaPath} alt={`Event ${event.id}`} />
+              <h2 className="font-bold text-xl text-center">{event.title}</h2>
             </SwiperSlide>
           ))}
         </Swiper>

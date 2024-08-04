@@ -18,10 +18,3 @@ export const AboutSectionData = {
   `,
   imageSrc: "/images/AboutIMG.jpg",
 };
-
-export const LatestEventSectionData = [
-    { eventId: 1, eventImg: "/images/Events/Event-IMG1.png" },
-    { eventId: 2, eventImg: "/images/Events/Event-IMG1.png" },
-    { eventId: 3, eventImg: "/images/Events/Event-IMG1.png" },
-    { eventId: 4, eventImg: "/images/Events/Event-IMG1.png" },
-  ];

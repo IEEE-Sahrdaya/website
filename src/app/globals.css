@@ -27,3 +27,12 @@
     scrollbar-color: #0371A4 #f1f1f1; 
   }
    */
+
+   .truncate-paragraph {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

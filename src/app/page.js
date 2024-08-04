@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Navbar from "@/components/Navbar/Navbar";
 import AboutSection from "@/sections/HomePage/AboutSection";
@@ -7,35 +7,29 @@ import HeroSection from "@/sections/HomePage/HeroSection";
 import InformantSection from "@/sections/HomePage/InformantSection";
 import LatestEventSection from "@/sections/HomePage/LatestEventSection";
 import Societies from "@/sections/HomePage/Societies";
-import React , {useEffect, useState} from "react";
-import { AboutSectionData , LatestEventSectionData } from "./data";
+import React, { useEffect, useState } from "react";
+import { AboutSectionData } from "./data";
+import { fetchAllEvents } from "@/utils/FirebaseFunctions";
 
 const Home = () => {
   const [aboutsectionData, setAboutSectionData] = useState(AboutSectionData);
-  const [latestsectionData, setLatestSectionData] = useState(LatestEventSectionData);
-
+  const [latestsectionData, setLatestSectionData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from API
-    // Update state
+    fetchAllEvents(setLatestSectionData);
   }, []);
   return (
     <div>
       <Navbar />
       <div className="">
-        
         <HeroSection />
         <AboutSection
-        title={aboutsectionData.title}
-        textContent={aboutsectionData.textContent}
-        imageSrc={aboutsectionData.imageSrc}
+          title={aboutsectionData.title}
+          textContent={aboutsectionData.textContent}
+          imageSrc={aboutsectionData.imageSrc}
         />
         <InformantSection />
-        <LatestEventSection 
-         title="Latest Events"
-          events={latestsectionData}
-
-        />
+        <LatestEventSection title="Latest Events" events={latestsectionData} />
         <Societies />
         <FooterSection />
       </div>

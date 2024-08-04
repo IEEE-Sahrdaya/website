@@ -1,11 +1,12 @@
 "use client";
+import Sidebar from "@/components/Sidebar";
+import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Sidebar from "../../components/Sidebar";
-import { auth } from "../../utils/firebase";
 import {
   createEvent,
+  deleteEvent,
   fetchEventsBySociety,
   getSociety,
 } from "../../utils/FirebaseFunctions";
@@ -63,6 +64,14 @@ const CreateButton = styled.button`
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: 20px;
+`;
+const DeleteButton = styled.button`
+  background-color: #ff4136;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
 `;
 
 const EventsHeader = styled.h2`
@@ -145,11 +154,6 @@ const Textarea = styled.textarea`
   border: 1px solid #e0e0e0;
   border-radius: 5px;
 `;
-const sidebarLinks = [
-  { href: "/dashboard", label: "Events" },
-  { href: "/dashboard/people", label: "People" },
-  // Add more links as needed
-];
 
 const Dashboard = () => {
   const router = useRouter();
@@ -182,10 +186,15 @@ const Dashboard = () => {
     setNewEvent({ title: "", description: "", date: "" });
     setPoster(null);
   };
-
+  const handleDeleteEvent = async (eventId) => {
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      await deleteEvent(eventId);
+      fetchEventsBySociety(Society, setEvents);
+    }
+  };
   return (
     <Container>
-      <Sidebar links={sidebarLinks} />
+      <Sidebar />
       <div style={{ flex: 1 }}>
         <Header>
           <WelcomeText>
@@ -218,7 +227,10 @@ const Dashboard = () => {
                 <Year>{new Date(event.date).getFullYear()}</Year>
               </DateBox>
               <EventTitle>{event.title}</EventTitle>
-              <p>{event.description}</p>
+              <p className="truncate-paragraph">{event.description}</p>
+              <DeleteButton onClick={() => handleDeleteEvent(event.id)}>
+                Delete
+              </DeleteButton>
             </EventCard>
           ))}
         </Content>
