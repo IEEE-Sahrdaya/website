@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,7 +14,7 @@ const CarouselContainer = styled.div`
   width: 100%;
   margin: auto;
   margin-top: 1rem;
-  
+
   @media (min-width: 768px) {
     margin-top: 2rem;
   }
@@ -28,17 +27,17 @@ const Title = styled.h1`
   color: #2563eb;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  
+
   @media (min-width: 640px) {
     font-size: 1.4rem;
   }
-  
+
   @media (min-width: 768px) {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
   }
-  
+
   @media (min-width: 1024px) {
     font-size: 2.5rem;
     margin-bottom: 2rem;
@@ -51,15 +50,15 @@ const SocietyLogo = styled.img`
   height: 50px;
   object-fit: contain;
   margin: auto;
-  
+
   @media (min-width: 640px) {
     height: 60px;
   }
-  
+
   @media (min-width: 768px) {
     height: 70px;
   }
-  
+
   @media (min-width: 1024px) {
     height: 80px;
   }
@@ -67,17 +66,26 @@ const SocietyLogo = styled.img`
 
 function Societies() {
   const societies = [
-    { id: 1, name: "Society 1", logo: "/images/Societies/Society-Logo1.png" },
-    { id: 2, name: "Society 2", logo: "/images/Societies/Society-Logo2.png" },
-    { id: 3, name: "Society 3", logo: "/images/Societies/Society-Logo3.png" },
-    { id: 4, name: "Society 4", logo: "/images/Societies/Society-Logo4.png" },
-    { id: 5, name: "Society 5", logo: "/images/Societies/Society-Logo2.png" },
-    { id: 6, name: "Society 1", logo: "/images/Societies/Society-Logo1.png" },
-    { id: 7, name: "Society 2", logo: "/images/Societies/Society-Logo2.png" },
-    { id: 8, name: "Society 3", logo: "/images/Societies/Society-Logo3.png" },
-    { id: 9, name: "Society 4", logo: "/images/Societies/Society-Logo4.png" },
-    { id: 10, name: "Society 5", logo: "/images/Societies/Society-Logo2.png" },
+    "cas",
+    "cs",
+    "css",
+    "edsoc",
+    "embs",
+    "ias",
+    "ies",
+    "npss",
+    "pes",
+    "ps",
+    "ras",
+    "sight",
+    "sps",
+    "wie",
   ];
+  const societyLogos = societies.map((society, index) => ({
+    id: index + 1,
+    name: society,
+    logo: `/images/Societies/${society}.png`,
+  }));
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -128,8 +136,8 @@ function Societies() {
           }}
           className="mySwiper"
         >
-          {societies.map((society) => (
-            <SwiperSlide key={society.id} style={{ width: 'auto' }}>
+          {societyLogos.map((society) => (
+            <SwiperSlide key={society.id} style={{ width: "auto" }}>
               <SocietyLogo src={society.logo} alt={society.name} />
             </SwiperSlide>
           ))}

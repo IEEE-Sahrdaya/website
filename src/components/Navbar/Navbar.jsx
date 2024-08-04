@@ -2,34 +2,25 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const societies = [
-  "Society 1",
-  "Society 2",
-  "Society 3",
-  "Society 4",
-  "Society 5",
-  "Society 6",
-  "Society 7",
-  "Society 8",
-  "Society 9",
-  "Society 10",
-  "Society 11",
-  "Society 12",
-  "Society 13",
-  "Society 14",
-  "Society 15",
-  "Society 16",
-  "Society 17",
-  "Society 18",
-  "Society 19",
-  "Society 20",
-  "Society 21",
-  "Society 22",
-  "Society 23",
-  "Society 24",
+  "Circuits and Systems Society",
+  "Computer Society",
+  "Control Systems Society",
+  "Education Society",
+  "Engineering in Medicine and Biology Society",
+  "Industry Applications Society",
+  "Industrial Electronics Society",
+  "Nuclear and Plasma Sciences Society",
+  "Power and Energy Society",
+  "Photonics Society",
+  "Robotics and Automation Society",
+  "SIGHT",
+  "Signal Processing Society",
+  "Women In Engineering",
 ];
 
 const NavLink = ({ href, children, onClick }) => (
@@ -91,17 +82,19 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Left: Logo */}
-        <div className="flex items-center">
-          <Image
-            src="/images/IEEE Sahrdaya Logo.jpg"
-            alt="IEEE Logo"
-            className="h-12"
-            width={0}
-            height={0}
-            sizes="10rem"
-            style={{ width: "100%", height: "auto" }}
-          />
-        </div>
+        <Link href={"/"}>
+          <div className="flex items-center">
+            <Image
+              src="/images/IEEE Sahrdaya Logo.jpg"
+              alt="IEEE Logo"
+              className="h-12"
+              width={0}
+              height={0}
+              sizes="10rem"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+        </Link>
 
         {/* Center: Navigation Links (Desktop) */}
         <div className="hidden md:flex flex-grow justify-center space-x-8 relative">

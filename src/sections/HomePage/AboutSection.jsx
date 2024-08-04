@@ -59,6 +59,7 @@ const ImageContainer = styled(motion.div)`
 function AboutSection({ title, textContent, imageSrc }) {
   return (
     <SectionContainer
+      id="about"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
@@ -75,12 +76,7 @@ function AboutSection({ title, textContent, imageSrc }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Image
-            src={imageSrc}
-            alt={title}
-            width={3000}
-            height={1000}
-          />
+          <Image src={imageSrc} alt={title} width={3000} height={1000} />
         </ImageContainer>
       </ContentContainer>
     </SectionContainer>
