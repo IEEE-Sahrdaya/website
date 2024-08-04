@@ -9,9 +9,8 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 // Array of image paths
 const images = [
-  '/images/Slider/Slider-IMG1.png',
-  '/images/Slider/Slider-IMG1.png',
-  '/images/Slider/Slider-IMG1.png',
+  '/images/Slider/slider-1.jpg',
+  '/images/Slider/slider-2.jpg',
 ];
 
 export default function App() {
@@ -20,7 +19,7 @@ export default function App() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="overflow-hidden w-full md:h-96 rounded-lg px-3 mx-auto "
+      className="overflow-hidden w-full  rounded-lg px-3 mx-auto "
     >
       <Swiper
         pagination={{ clickable: true }}
@@ -44,7 +43,7 @@ export default function App() {
             <motion.img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-auto mx-auto h-56 md:h-96 object-cover rounded-lg"
+              className="w-auto md:h-96 mx-auto bg-center h-auto md:w-[75%] object-cover rounded-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
