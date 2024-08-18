@@ -1,11 +1,13 @@
 "use client";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import Navbar from "../../components/Navbar/Navbar";
 import { auth } from "../../utils/firebase";
 import { handleLogin } from "../../utils/FirebaseFunctions";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.div`
   display: flex;
@@ -72,9 +74,13 @@ export default function SignIn() {
   }, [router]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin({ email: Email, password: Password }).then((user) => {
-      router.push("/dashboard");
-    });
+    handleLogin({ email: Email, password: Password })
+      .then((user) => {
+        router.push("/dashboard");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (
@@ -85,6 +91,8 @@ export default function SignIn() {
       </Head>
       <Navbar />
       <Container>
+        <ToastContainer />
+
         <Title>Sign in</Title>
         <Subtitle>
           Societies can login to this application and edit website content

@@ -179,12 +179,24 @@ const Dashboard = () => {
     society: "",
   });
   const [Poster, setPoster] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleCreateEvent = () => {
-    console.log(newEvent);
+    if (
+      !newEvent.title ||
+      !newEvent.description ||
+      !newEvent.date ||
+      !newEvent.society ||
+      !Poster
+    ) {
+      setErrorMessage("All fields are required, including the poster.");
+      return;
+    }
     createEvent(newEvent, Poster);
     setShowModal(false);
     setNewEvent({ title: "", description: "", date: "" });
     setPoster(null);
+    setErrorMessage("");
   };
   const handleDeleteEvent = async (eventId) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
@@ -240,6 +252,9 @@ const Dashboard = () => {
           <h2 className="text-xl font-bold text-center text-[#0682DB]">
             Create New Event
           </h2>
+          {errorMessage && (
+            <p style={{ color: "red", marginBottom: "10px" }}>{errorMessage}</p>
+          )}
           <Input
             placeholder="Event Title"
             value={newEvent.title}

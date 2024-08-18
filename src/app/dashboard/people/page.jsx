@@ -78,6 +78,7 @@ const PersonImage = styled.img`
   height: 60px;
   border-radius: 50%;
   margin-right: 20px;
+  object-fit: cover;
 `;
 
 const PersonInfo = styled.div`
@@ -164,6 +165,7 @@ const People = () => {
       society: society,
     });
     setPhoto(null);
+    setErrorMessage("");
   };
 
   const handleDeletePerson = async (personId) => {

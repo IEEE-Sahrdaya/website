@@ -121,19 +121,37 @@ export const deletePerson = async (personId) => {
   }
 };
 
-export const fetchPeopleBySociety = (society, handleEventsUpdate) => {
+export const fetchPeopleBySociety = (society, handlePeopleUpdate) => {
   const Membersref = collection(db, "members");
   const q = query(Membersref, where("society", "==", society));
 
   return onSnapshot(q, (querySnapshot) => {
-    const events = [];
+    const people = [];
 
-    querySnapshot.forEach((eventDoc) => {
-      const eventData = eventDoc.data();
-      const eventId = eventDoc.id;
-      events.push({ id: eventId, ...eventData });
+    querySnapshot.forEach((doc) => {
+      const personData = doc.data();
+      const personId = doc.id;
+      people.push({ id: personId, ...personData });
     });
-    // Sort events by date, most recent first
-    handleEventsUpdate(events);
+
+    // Custom sorting function
+    const sortOrder = {
+      "Branch Counsellor": 1,
+      "Chairperson": 2,
+      "Vice Chairperson": 3,
+      "Secretary": 4,
+    };
+
+    people.sort((a, b) => {
+      const orderA = sortOrder[a.role] || 100;
+      const orderB = sortOrder[b.role] || 100;
+      
+      if (orderA !== orderB) {
+        return orderA - orderB; // Sort by predefined order
+      }
+      return a.name.localeCompare(b.name);
+    });
+
+    handlePeopleUpdate(people);
   });
 };

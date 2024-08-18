@@ -75,38 +75,32 @@ const ViewButton = styled.a`
   }
 `;
 
-const ExecomSection = () => {
-  const members = [
-    {
-      name: "Mr. Anil Antony",
-      position: "Branch Counsellor",
-      image: "../../../images/execom/user.jpg",
-    },
-    {
-      name: "Mr. Robin Francis",
-      position: "Chairperson",
-      image: "../../../images/execom/user.jpg",
-    },
-    {
-      name: "Ms. Aaisha Shafeek",
-      position: "Vice Chair",
-      image: "../../../images/execom/user.jpg",
-    },
-  ];
-
+const ExecomSection = ({ people, showFullExecomBtn }) => {
   return (
     <ExecomContainer id="execom">
       <Title>Execom</Title>
-      <MembersGrid>
-        {members.map((member, index) => (
-          <MemberCard key={index}>
-            <MemberImage src={member.image} alt={member.name} />
-            <MemberName>{member.name}</MemberName>
-            <MemberPosition>{member.position}</MemberPosition>
-          </MemberCard>
-        ))}
-      </MembersGrid>
-      <ViewButton href="/execom">View Full Execom</ViewButton>
+      {people.length === 0 ? (
+        <>
+          <h2 className="text-5xl text-center py-6">¯\_(ツ)_/¯</h2>
+          <h2 className="text-center text-md">
+            No Society Bearers found. Contact Technical Team. If you&apos;ve society
+            access, update your buddies
+          </h2>
+        </>
+      ) : (
+        <MembersGrid>
+          {people.map((member, index) => (
+            <MemberCard key={index}>
+              <MemberImage src={member.mediaPath} alt={member.mediaPath} />
+              <MemberName>{member.name}</MemberName>
+              <MemberPosition>{member.role}</MemberPosition>
+            </MemberCard>
+          ))}
+        </MembersGrid>
+      )}
+      {showFullExecomBtn && (
+        <ViewButton href="/execom">View Full Execom</ViewButton>
+      )}
     </ExecomContainer>
   );
 };

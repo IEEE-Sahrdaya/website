@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const societies = [
-  { code: "cass", name: "Circuits and Systems Society" },
+  { code: "cas", name: "Circuits and Systems Society" },
   { code: "cs", name: "Computer Society" },
   { code: "css", name: "Control Systems Society" },
   { code: "edsoc", name: "Education Society" },

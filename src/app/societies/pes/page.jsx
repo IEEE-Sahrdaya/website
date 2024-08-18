@@ -8,19 +8,24 @@ import { AboutSectionData } from "./data";
 import {
   fetchAllEvents,
   fetchEventsBySociety,
+  fetchPeopleBySociety,
   getSociety,
 } from "@/utils/FirebaseFunctions";
 import LatestEventSection from "@/sections/HomePage/LatestEventSection";
 import { usePathname } from "next/navigation";
 import ExecomSection from "@/sections/HomePage/ExecomSection";
+import FooterSection from "@/sections/HomePage/FooterSection";
+import ContactSection from "@/sections/SocitiesPage/ContactSection";
 
 function Page() {
   const [latestSectionData, setLatestSectionData] = useState([]);
+  const [Execom, setExecom] = useState([])
   const fullPath = usePathname();
   const SocietyCode = fullPath.split("/").pop();
 
   useEffect(() => {
     fetchEventsBySociety(SocietyCode, setLatestSectionData);
+    fetchPeopleBySociety(SocietyCode, setExecom)
   }, [SocietyCode]);
   const logo = {
     src: "/images/Societies/PES/Society-Logo1.png",
@@ -54,7 +59,9 @@ function Page() {
         imageSrc={AboutSectionData.imageSrc}
       />
       <LatestEventSection title="Latest Events" events={latestSectionData} />
-      <ExecomSection/>
+      <ExecomSection people={Execom}/>
+      <ContactSection email={'ieeepes@sahrdaya.ac.in'}/>
+      <FooterSection/>
     </div>
   );
 }
