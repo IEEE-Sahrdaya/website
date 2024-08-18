@@ -2,18 +2,18 @@
 
 import Navbar from "@/components/Navbar/Navbar";
 import AboutSection from "@/sections/HomePage/AboutSection";
+import ExecomSection from "@/sections/HomePage/ExecomSection";
 import FooterSection from "@/sections/HomePage/FooterSection";
 import HeroSection from "@/sections/HomePage/HeroSection";
 import InformantSection from "@/sections/HomePage/InformantSection";
 import LatestEventSection from "@/sections/HomePage/LatestEventSection";
 import Societies from "@/sections/HomePage/Societies";
-import React, { useEffect, useState } from "react";
-import { AboutSectionData } from "./data";
 import {
   fetchAllEvents,
   fetchPeopleBySociety,
 } from "@/utils/FirebaseFunctions";
-import ExecomSection from "@/sections/HomePage/ExecomSection";
+import { useEffect, useState } from "react";
+import { AboutSectionData } from "./data";
 
 const Home = () => {
   const [aboutsectionData, setAboutSectionData] = useState(AboutSectionData);
