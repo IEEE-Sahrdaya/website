@@ -60,33 +60,42 @@ function LatestEventSection({ events, title }) {
       transition={{ duration: 0.5 }}
     >
       <Title>{title}</Title>
-      <CarouselContainer>
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={20}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
-          pagination={{ clickable: true }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-          }}
-        >
-          {events.map((event) => (
-            <SwiperSlide key={event.id}>
-              <EventImage src={event.mediaPath} alt={`Event ${event.id}`} />
-              <h2 className="font-bold text-xl text-center">{event.title}</h2>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </CarouselContainer>
+      {events.length === 0 ? (
+        <>
+          <h2 className="text-5xl text-center py-6">¯\_(ツ)_/¯</h2>
+          <h2 className="text-center text-md">
+            No Events Found. Contact Society Bearers
+          </h2>
+        </>
+      ) : (
+        <CarouselContainer>
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+            }}
+          >
+            {events.map((event) => (
+              <SwiperSlide key={event.id}>
+                <EventImage src={event.mediaPath} alt={`Event ${event.id}`} />
+                <h2 className="font-bold text-xl text-center">{event.title}</h2>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </CarouselContainer>
+      )}
     </motion.div>
   );
 }

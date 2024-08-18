@@ -95,7 +95,7 @@ const ExecomSection = () => {
   ];
 
   return (
-    <ExecomContainer>
+    <ExecomContainer id="execom">
       <Title>Execom</Title>
       <MembersGrid>
         {members.map((member, index) => (

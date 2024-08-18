@@ -7,20 +7,20 @@ import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const societies = [
-  "Circuits and Systems Society",
-  "Computer Society",
-  "Control Systems Society",
-  "Education Society",
-  "Engineering in Medicine and Biology Society",
-  "Industry Applications Society",
-  "Industrial Electronics Society",
-  "Nuclear and Plasma Sciences Society",
-  "Power and Energy Society",
-  "Photonics Society",
-  "Robotics and Automation Society",
-  "SIGHT",
-  "Signal Processing Society",
-  "Women In Engineering",
+  { code: "cass", name: "Circuits and Systems Society" },
+  { code: "cs", name: "Computer Society" },
+  { code: "css", name: "Control Systems Society" },
+  { code: "edsoc", name: "Education Society" },
+  { code: "embs", name: "Engineering in Medicine and Biology Society" },
+  { code: "ias", name: "Industry Applications Society" },
+  { code: "ies", name: "Industrial Electronics Society" },
+  { code: "npss", name: "Nuclear and Plasma Sciences Society" },
+  { code: "pes", name: "Power and Energy Society" },
+  { code: "ps", name: "Photonics Society" },
+  { code: "ras", name: "Robotics and Automation Society" },
+  { code: "sight", name: "SIGHT" },
+  { code: "sps", name: "Signal Processing Society" },
+  { code: "wie", name: "Women In Engineering" },
 ];
 
 const NavLink = ({ href, children, onClick }) => (
@@ -136,15 +136,13 @@ const Navbar = () => {
                     {societies.map((society, index) => (
                       <motion.a
                         key={index}
-                        href={`/societies/${society
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
+                        href={`/societies/${society.code}`}
                         className="text-blue-600 hover:text-blue-900 block p-2 hover:bg-gray-100"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05, originX: 0 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        {society}
+                        {society.name}
                       </motion.a>
                     ))}
                   </motion.div>
@@ -225,16 +223,14 @@ const Navbar = () => {
                     {societies.map((society, index) => (
                       <motion.a
                         key={index}
-                        href={`/societies/${society
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
+                        href={`/societies/${society.code}`}
                         className="text-blue-600 hover:text-blue-900 block"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05, originX: 0 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={toggleMobileMenu}
                       >
-                        {society}
+                        {society.name}
                       </motion.a>
                     ))}
                   </motion.div>
