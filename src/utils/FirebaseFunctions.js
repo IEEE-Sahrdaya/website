@@ -9,12 +9,15 @@ import {
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
   onSnapshot,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { auth, db, storage } from "../utils/firebase";
+import { AboutSectionData } from "@/app/societies/[slug]/data";
 export const handleLogin = async (formData) => {
   try {
     await setPersistence(auth, browserLocalPersistence);
@@ -137,15 +140,15 @@ export const fetchPeopleBySociety = (society, handlePeopleUpdate) => {
     // Custom sorting function
     const sortOrder = {
       "Branch Counsellor": 1,
-      "Chairperson": 2,
+      Chairperson: 2,
       "Vice Chairperson": 3,
-      "Secretary": 4,
+      Secretary: 4,
     };
 
     people.sort((a, b) => {
       const orderA = sortOrder[a.role] || 100;
       const orderB = sortOrder[b.role] || 100;
-      
+
       if (orderA !== orderB) {
         return orderA - orderB; // Sort by predefined order
       }
@@ -154,4 +157,86 @@ export const fetchPeopleBySociety = (society, handlePeopleUpdate) => {
 
     handlePeopleUpdate(people);
   });
+};
+export const fetchSocietyData = async (societyKey) => {
+  try {
+    // Create a query against the `users` collection where `society` matches `societyKey`
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("society", "==", societyKey));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // Assuming there's only one document with the matching `society` field
+      const docSnap = querySnapshot.docs[0];
+      const userData = docSnap.data();
+      return {
+        aboutText: userData.aboutText || AboutSectionData.textContent,
+        backgroundImage: userData.BgImagePath || AboutSectionData.bgSrc,
+        heroImage: userData.HeroImagePath || AboutSectionData.heroSrc,
+        society: userData.society || "",
+        email: userData.email
+      };
+    } else {
+      console.log("No matching documents found!");
+      return {
+        aboutText: "",
+        backgroundImage: "",
+        heroImage: "",
+        society: "",
+        email: ""
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching society data:", error);
+    throw error;
+  }
+};
+export const updateSocietyData = async (society, newData) => {
+  try {
+    const userRef = doc(db, "users", society);
+
+    // First, get the current document data
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      throw new Error("Society document does not exist!");
+    }
+
+    // Prepare the update object
+    const updateObject = {
+      aboutText: newData.aboutText,
+    };
+
+    // Handle background image upload
+    if (newData.backgroundImage instanceof File) {
+      const bgImageRef = ref(storage, `society/${society}/background_image`);
+      await uploadBytes(bgImageRef, newData.backgroundImage);
+      updateObject.BgImagePath = await getDownloadURL(bgImageRef);
+    } else if (typeof newData.backgroundImage === "string") {
+      updateObject.BgImagePath = newData.backgroundImage;
+    }
+
+    // Handle hero image upload
+    if (newData.heroImage instanceof File) {
+      const heroImageRef = ref(storage, `society/${society}/hero_image`);
+      await uploadBytes(heroImageRef, newData.heroImage);
+      updateObject.HeroImagePath = await getDownloadURL(heroImageRef);
+    } else if (typeof newData.heroImage === "string") {
+      updateObject.HeroImagePath = newData.heroImage;
+    }
+
+    // Remove any undefined fields to avoid overwriting with undefined
+    Object.keys(updateObject).forEach(
+      (key) => updateObject[key] === undefined && delete updateObject[key]
+    );
+
+    // Update only the specified fields
+    await updateDoc(userRef, updateObject);
+
+    console.log("Society data updated successfully");
+    return updateObject;
+  } catch (error) {
+    console.error("Error updating society data:", error);
+    throw error;
+  }
 };

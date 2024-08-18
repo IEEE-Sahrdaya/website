@@ -73,7 +73,7 @@ function InformantSection() {
         <FlexColumn>
           <CountUp target={1000}/>
           <Label>Membership Count</Label>
-          <CountUp target={50} />
+          <CountUp target={6} />
           <Label>Professional Members</Label>
         </FlexColumn>
         <FlexColumn>

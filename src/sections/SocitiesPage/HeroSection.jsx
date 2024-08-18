@@ -51,15 +51,14 @@ const Subtitle = styled.p`
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 `;
 
-function HeroSection({ path }) {
+function HeroSection({ path, title, subtitle }) {
   return (
     <HeroContainer>
       <HeroImage src={path} alt="Hero Image" layout="fill" priority />
       <TextOverlay>
-        <Title>IEEE PES SAHRDAYA</Title>
+        <Title>{title}</Title>
         <Subtitle>
-          WELCOME TO THE POWER AND ENERGY SOCIETY (PES) AT IEEE SAHRDAYA STUDENT
-          BRANCH!
+          {subtitle}
         </Subtitle>
       </TextOverlay>
     </HeroContainer>
