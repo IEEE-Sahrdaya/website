@@ -240,3 +240,17 @@ export const updateSocietyData = async (society, newData) => {
     throw error;
   }
 };
+
+export const fetchAllPeople = async () => {
+  try {
+    const peopleRef = collection(db, "members");
+    const snapshot = await getDocs(peopleRef);
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  } catch (error) {
+    console.error("Error fetching all people:", error);
+    throw error;
+  }
+};

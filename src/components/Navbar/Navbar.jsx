@@ -98,8 +98,8 @@ const Navbar = () => {
 
         {/* Center: Navigation Links (Desktop) */}
         <div className="hidden md:flex flex-grow justify-center space-x-8 relative">
-          <NavLink href="#about">About Us</NavLink>
-          <NavLink href="#events">Events</NavLink>
+          <NavLink href="/#about">About Us</NavLink>
+          <NavLink href="/#events">Events</NavLink>
           <div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
@@ -193,10 +193,10 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="flex flex-col p-4 space-y-4">
-              <NavLink href="#about" onClick={toggleMobileMenu}>
+              <NavLink href="/#about" onClick={toggleMobileMenu}>
                 About Us
               </NavLink>
-              <NavLink href="#events" onClick={toggleMobileMenu}>
+              <NavLink href="/#events" onClick={toggleMobileMenu}>
                 Events
               </NavLink>
               <motion.button
