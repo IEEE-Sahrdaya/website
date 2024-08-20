@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/app/loading";
 import AboutSection from "@/sections/HomePage/AboutSection";
 import ExecomSection from "@/sections/HomePage/ExecomSection";
 import FooterSection from "@/sections/HomePage/FooterSection";
@@ -44,7 +45,7 @@ function SocietyPage({ params }) {
   console.log(societyData);
 
   if (!societyData) {
-    return <div>Loading...</div>; // Or a proper loading component
+    return <Loading />;
   }
 
   const logo = {
