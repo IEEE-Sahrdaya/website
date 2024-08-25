@@ -137,8 +137,20 @@ const Modal = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 500px;
+  z-index: 1001;
 `;
-
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
 const Input = styled.input`
   width: 100%;
   padding: 10px;
@@ -206,7 +218,7 @@ const Dashboard = () => {
   };
   return (
     <Container>
-      <Sidebar />
+      <Sidebar society={Society}/>
       <div style={{ flex: 1 }}>
         <Header>
           <WelcomeText>
@@ -248,38 +260,46 @@ const Dashboard = () => {
         </Content>
       </div>
       {showModal && (
-        <Modal>
-          <h2 className="text-xl font-bold text-center text-[#0682DB]">
-            Create New Event
-          </h2>
-          {errorMessage && (
-            <p style={{ color: "red", marginBottom: "10px" }}>{errorMessage}</p>
-          )}
-          <Input
-            placeholder="Event Title"
-            value={newEvent.title}
-            onChange={(e) =>
-              setNewEvent({ ...newEvent, title: e.target.value })
-            }
-          />
-          <Textarea
-            placeholder="Event Description"
-            value={newEvent.description}
-            onChange={(e) =>
-              setNewEvent({ ...newEvent, description: e.target.value })
-            }
-          />
-          <Input
-            type="date"
-            value={newEvent.date}
-            onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-          />
-          <Input type="file" onChange={(e) => setPoster(e.target.files[0])} />
-          <CreateButton onClick={handleCreateEvent}>Create Event</CreateButton>
-          <CreateButton onClick={() => setShowModal(false)}>
-            Cancel
-          </CreateButton>
-        </Modal>
+        <Overlay>
+          <Modal>
+            <h2 className="text-xl font-bold text-center text-[#0682DB]">
+              Create New Event
+            </h2>
+            {errorMessage && (
+              <p style={{ color: "red", marginBottom: "10px" }}>
+                {errorMessage}
+              </p>
+            )}
+            <Input
+              placeholder="Event Title"
+              value={newEvent.title}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, title: e.target.value })
+              }
+            />
+            <Textarea
+              placeholder="Event Description"
+              value={newEvent.description}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, description: e.target.value })
+              }
+            />
+            <Input
+              type="date"
+              value={newEvent.date}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, date: e.target.value })
+              }
+            />
+            <Input type="file" onChange={(e) => setPoster(e.target.files[0])} />
+            <CreateButton onClick={handleCreateEvent}>
+              Create Event
+            </CreateButton>
+            <CreateButton onClick={() => setShowModal(false)}>
+              Cancel
+            </CreateButton>
+          </Modal>
+        </Overlay>
       )}
     </Container>
   );

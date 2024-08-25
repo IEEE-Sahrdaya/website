@@ -44,12 +44,12 @@ const StyledLink = styled(Link)`
   display: block;
 `;
 
-const Sidebar = () => {
+const Sidebar = ({society}) => {
   const pathname = usePathname();
   const sidebarLinks = [
     { href: "/dashboard", label: "Events" },
     { href: "/dashboard/people", label: "People" },
-    { href: "/dashboard/society", label: "Society Page Data" },
+    ...(society.toLowerCase() !== 'sb' ? [{ href: "/dashboard/society", label: "Society Page Data" }] : []),
     // Add more links as needed
   ];
   return (

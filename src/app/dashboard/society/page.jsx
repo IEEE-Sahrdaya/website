@@ -104,10 +104,17 @@ const SocietyPage = () => {
       }
       const userSociety = await getSociety(user.uid);
       setSociety(userSociety);
+      if (userSociety.toLowerCase() === "sb") {
+        router.push("/"); // Redirect to home page or another appropriate page
+        return;
+      }
       const data = await fetchSocietyData(userSociety);
       setSocietyData(data);
     });
   }, []);
+  if (society.toLowerCase() === "sb") {
+    return null;
+  }
   const handleImageChange = (e, imageType) => {
     const file = e.target.files[0];
     setSocietyData((prev) => ({ ...prev, [imageType]: file }));
@@ -132,7 +139,7 @@ const SocietyPage = () => {
   };
   return (
     <Container>
-      <Sidebar />
+      <Sidebar society={society}/>
       <div style={{ flex: 1 }}>
         <Header>
           <WelcomeText>
@@ -144,7 +151,10 @@ const SocietyPage = () => {
           <FormSection>
             <h2 className="font-bold  text-center text-red-700">
               WARNING: Anything you change here will be reflected at your{" "}
-              <a className="text-blue-700 underline" href={`https://ieeesahrdaya.com/societies/${society}`}>
+              <a
+                className="text-blue-700 underline"
+                href={`https://ieeesahrdaya.com/societies/${society}`}
+              >
                 society website
               </a>
             </h2>

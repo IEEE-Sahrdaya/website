@@ -27,7 +27,7 @@ function SocietyPage({ params }) {
     const loadSocietyData = async () => {
       try {
         const data = await fetchSocietyData(slug);
-        if (data.society === "") {
+        if (data.society === "" || data.society === "sb") {
           router.push("/404"); // Redirect to 404 page if society not found
           return;
         }
