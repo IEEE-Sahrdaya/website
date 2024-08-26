@@ -61,7 +61,7 @@ function FooterSection() {
 
             <Link href={"https://sahrdaya.ac.in"}>
               <p className="hover:underline">
-                &gt; Sahrdaya College of Engineering and Technology
+                &gt; Sahrdaya College of Engineering and Technology (Autonomous)
               </p>
             </Link>
           </div>
