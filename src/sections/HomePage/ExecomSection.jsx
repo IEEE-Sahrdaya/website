@@ -24,13 +24,25 @@ const Title = styled.h1`
 `;
 
 const MembersGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
+  justify-content: center;
+
+  > * {
+    flex-basis: calc(33.333% - 1.333rem);
+    max-width: calc(33.333% - 1.333rem);
+  }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
   }
 `;
 

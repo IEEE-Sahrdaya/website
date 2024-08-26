@@ -11,6 +11,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 const images = [
   '/images/Slider/slider-1.jpg',
   '/images/Slider/slider-2.jpg',
+  '/images/Slider/slider-3.jpg',
 ];
 
 export default function App() {

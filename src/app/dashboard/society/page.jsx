@@ -98,6 +98,7 @@ const SocietyPage = () => {
     heroImage: null,
   });
   useEffect(() => {
+    document.title = "Manage Society Page Data | IEEE Sahrdaya SB"
     auth.onAuthStateChanged(async (user) => {
       if (!user) {
         return router.push("/signin");

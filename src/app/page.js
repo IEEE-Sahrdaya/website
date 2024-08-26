@@ -20,6 +20,7 @@ const Home = () => {
   const [latestsectionData, setLatestSectionData] = useState([]);
   const [ExecomData, setExecomData] = useState([]);
   useEffect(() => {
+    document.title = "IEEE Sahrdaya SB"
     fetchAllEvents(setLatestSectionData);
     fetchPeopleBySociety("sb", setExecomData);
   }, []);

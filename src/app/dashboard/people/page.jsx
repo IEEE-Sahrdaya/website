@@ -144,6 +144,7 @@ const People = () => {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
+    document.title = "Manage Office Bearers | IEEE Sahrdaya SB"
     auth.onAuthStateChanged(async (user) => {
       if (!user) {
         return router.push("/signin");

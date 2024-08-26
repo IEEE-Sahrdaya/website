@@ -173,6 +173,7 @@ const Dashboard = () => {
 
   const [Events, setEvents] = useState([]);
   useEffect(() => {
+    document.title = "Manage Events | IEEE Sahrdaya SB"
     auth.onAuthStateChanged(async (user) => {
       if (!user) {
         return router.push("/signin");

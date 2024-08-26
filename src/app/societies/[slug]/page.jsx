@@ -88,6 +88,9 @@ function SocietyPage({ params }) {
 
   return (
     <div>
+      <title>{`${
+        societies.find((society) => society.code === slug).name
+      } | IEEE Sahrdaya SB`}</title>
       <SocietiesNavbar
         logo={logo}
         navLinks={navLinks}
@@ -112,5 +115,4 @@ function SocietyPage({ params }) {
     </div>
   );
 }
-
 export default SocietyPage;

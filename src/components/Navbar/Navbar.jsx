@@ -166,7 +166,7 @@ const Navbar = () => {
             Sign In
           </motion.a>
           <motion.a
-            href="/join-ieee"
+            href="https://www.ieee.org/membership/index.html"
             className="hidden md:inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -255,7 +255,7 @@ const Navbar = () => {
                 Sign In
               </motion.a>
               <motion.a
-                href="/join-ieee"
+                href="https://www.ieee.org/membership/index.html"
                 className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

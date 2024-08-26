@@ -66,6 +66,7 @@ export default function SignIn() {
   const [Password, setPassword] = useState("");
   const router = useRouter();
   useEffect(() => {
+    document.title = "Sign in | IEEE Sahrdaya SB"
     auth.onAuthStateChanged((user) => {
       if (user) {
         return router.push("/dashboard");
@@ -82,7 +83,6 @@ export default function SignIn() {
         toast.error(err.message);
       });
   };
-
   return (
     <>
       <Head>
