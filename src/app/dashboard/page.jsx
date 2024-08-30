@@ -180,7 +180,7 @@ const Dashboard = () => {
       }
       const society = await getSociety(user.uid);
       setSociety(society);
-      setNewEvent({ ...newEvent, society: socsocietyiety });
+      setNewEvent({ ...newEvent, society: society });
       fetchEventsBySociety(society, setEvents);
     });
   }, [setEvents]);
