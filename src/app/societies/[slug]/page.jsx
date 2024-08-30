@@ -82,7 +82,7 @@ function SocietyPage({ params }) {
   ];
 
   const buttonLink = {
-    href: "/join-ieee",
+    href: "https://www.ieee.org/membership/index.html",
     text: "Join IEEE Sahrdaya",
   };
 

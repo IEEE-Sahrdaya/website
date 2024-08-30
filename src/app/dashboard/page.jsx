@@ -180,7 +180,7 @@ const Dashboard = () => {
       }
       const society = await getSociety(user.uid);
       setSociety(society);
-      setNewEvent({ ...newEvent, society: society });
+      setNewEvent({ ...newEvent, society: socsocietyiety });
       fetchEventsBySociety(society, setEvents);
     });
   }, [setEvents]);
@@ -195,6 +195,7 @@ const Dashboard = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreateEvent = () => {
+    
     if (
       !newEvent.title ||
       !newEvent.description ||
@@ -207,8 +208,9 @@ const Dashboard = () => {
     }
     createEvent(newEvent, Poster);
     setShowModal(false);
-    setNewEvent({ title: "", description: "", date: "" });
+    setNewEvent({ title: "", description: "", date: "", society:"" });
     setPoster(null);
+    setNewEvent({ ...newEvent, society: Society });
     setErrorMessage("");
   };
   const handleDeleteEvent = async (eventId) => {
