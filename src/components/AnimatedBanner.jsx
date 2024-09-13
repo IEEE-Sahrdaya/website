@@ -27,7 +27,7 @@ const AnimatedBanner = () => {
           />
         </div>
         <p className="text-sm sm:text-base font-medium">
-          Registrations for IEEE Sahrdaya SB's flagship event, Infinia, are now live. 
+          Registrations for IEEE Sahrdaya SB&apos;s flagship event, Infinia, are now live. 
           <span className="hidden sm:inline"> Join the technical infinity, where imagination meets technology.</span>
         </p>
         <motion.a 
