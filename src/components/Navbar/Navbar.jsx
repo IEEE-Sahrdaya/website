@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import AnimatedBanner from "../AnimatedBanner";
 
 const societies = [
   { code: "cas", name: "Circuits and Systems Society" },
@@ -80,6 +81,7 @@ const Navbar = () => {
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
       transition={{ duration: 0.5 }}
     >
+      <AnimatedBanner/>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Left: Logo */}
         <Link href={"/"}>
