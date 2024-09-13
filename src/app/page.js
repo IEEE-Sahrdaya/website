@@ -35,7 +35,8 @@ const Home = () => {
           imageSrc={aboutsectionData.imageSrc}
         />
         <InformantSection />
-        <LatestEventSection title="Latest Events" events={latestsectionData} />
+        {/* Show only latest 25 Events on page */}
+        <LatestEventSection title="Latest Events" events={latestsectionData.slice(0, 10)} />
         <Societies />
         {
           // Show faculty advisor, chair, vice chair only on home page

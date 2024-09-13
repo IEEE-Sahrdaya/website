@@ -20,7 +20,6 @@ const CarouselContainer = styled.div`
     margin-top: 2rem;
   }
 `;
-
 const Title = styled.h1`
   text-align: center;
   font-size: 1.2rem;
@@ -38,11 +37,21 @@ const Title = styled.h1`
   }
 `;
 
-const EventImage = styled.img`
+const EventImageWrapper = styled.div`
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  padding-top: 100%; // 16:9 aspect ratio
+  position: relative;
   border-radius: 8px;
+  overflow: hidden;
+`;
+
+const EventImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 function LatestEventSection({ events, title }) {
@@ -88,9 +97,13 @@ function LatestEventSection({ events, title }) {
             }}
           >
             {events.map((event) => (
-              <SwiperSlide key={event.id}>
-                <EventImage src={event.mediaPath} alt={`Event ${event.id}`} />
-                <h2 className="font-bold text-xl text-center">{event.title}</h2>
+              <SwiperSlide className="mb-10" key={event.id}>
+                <EventImageWrapper>
+                  <EventImage src={event.mediaPath} alt={`Event ${event.id}`} />
+                </EventImageWrapper>
+                <h2 className="font-bold text-xl text-center mt-2">
+                  {event.title}
+                </h2>
               </SwiperSlide>
             ))}
           </Swiper>
