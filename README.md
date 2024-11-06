@@ -2,6 +2,21 @@
 
 A modern, responsive website for IEEE Sahrdaya Student Branch built with Next.js, styled-components, and Firebase.
 
+## 📸 Screenshots
+
+
+### Public Pages
+| Home Page | Society Page |
+|-----------|--------------|
+| ![Home Page](./doc/home.jpg) | ![Society Page](./doc/society.jpg) |
+
+### Admin Dashboard
+| Office Admin | Events Admin | Society Admin |
+|--------------|--------------|---------------|
+| ![Office Admin](./doc/office-admin.jpg) | ![Events Admin](./doc/events-admin.jpg) | ![Society Admin](./doc/society-admin.jpg) |
+
+
+
 ## 🌟 Features
 
 - **Dynamic Content Management**: Firebase-powered dashboard for society admins
