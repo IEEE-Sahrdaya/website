@@ -1,36 +1,178 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IEEE Sahrdaya SB Website
 
-## Getting Started
+A modern, responsive website for IEEE Sahrdaya Student Branch built with Next.js, styled-components, and Firebase.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
+- **Dynamic Content Management**: Firebase-powered dashboard for society admins
+- **Responsive Design**: Fully responsive across all devices
+- **Interactive UI**: Smooth animations and transitions using Framer Motion
+- **Real-time Updates**: Live event updates and society information
+- **Image Optimization**: Next.js Image component for optimal loading
+- **SEO Friendly**: Built with SEO best practices
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 13+ (App Router)
+- **Styling**: 
+  - Styled Components
+  - Tailwind CSS
+- **Animation**: Framer Motion
+- **Carousel**: Swiper.js
+- **Backend**: Firebase
+  - Authentication
+  - Firestore
+  - Storage
+- **Deployment**: Vercel
+
+## 📱 Sections
+
+- **Home Page**
+  - Hero Section with Image Slider
+  - About Section
+  - Latest Events
+  - Society Logos Carousel
+  - Informant Section (Statistics)
+  - Footer with Important Links
+
+- **Societies Page**
+  - Custom Hero Section
+  - Society-specific Navigation
+  - Contact Section
+  - Events Display
+
+- **Dashboard**
+  - Society Management
+  - Content Updates
+  - Image Upload
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+
+```
+git clone https://github.com/IEEE-SAHRDAYA/website.git
+```
+2. Install dependencies:
+
+```
+npm install
+```
+3. Run the development server:
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+src/
+├── app/ # Next.js app router pages
+├── components/ # Reusable components
+├── sections/ # Page sections
+│ ├── HomePage/ # Home page sections
+│ └── SocietiesPage/ # Society page sections
+├── utils/ # Utility functions
+└── styles/ # Global styles
+```
 
-## Learn More
+## 👨‍💻 Development Guide
 
-To learn more about Next.js, take a look at the following resources:
+### Firebase Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Authentication
+- Uses Email/Password authentication for society admins
+- Admin emails must be pre-registered in Firebase Auth
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Firestore Collections Structure
 
-## Deploy on Vercel
+```
+// Collection: events
+{
+id: "auto-generated",
+title: String,
+description: String,
+date: String, // Format: "YYYY-MM-DD"
+society: String, // Society code (e.g., "cs", "wie")
+mediaPath: String // URL to event poster in Firebase Storage
+}
+```
+```
+// Collection: people (execom)
+{
+id: "auto-generated",
+name: String,
+role: String,
+society: String, // Society code
+photoPath: String // URL to profile photo
+}
+```
+```
+// Collection: societies
+{
+id: String, // Society code (e.g., "cs")
+about: String, // Society description
+backgroundImage: String, // URL to background image
+heroImage: String, // URL to hero section image
+email: String // Society contact email
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### Society Codes Reference
+
+```
+const SOCIETIES_MAP = [
+{ code: "cas", name: "Circuits and Systems Society" },
+{ code: "cs", name: "Computer Society" },
+{ code: "css", name: "Control Systems Society" },
+{ code: "edsoc", name: "Education Society" },
+{ code: "embs", name: "Engineering in Medicine and Biology Society" },
+{ code: "ias", name: "Industry Applications Society" },
+{ code: "ies", name: "Industrial Electronics Society" },
+{ code: "npss", name: "Nuclear and Plasma Sciences Society" },
+{ code: "pes", name: "Power and Energy Society" },
+{ code: "ps", name: "Photonics Society" },
+{ code: "ras", name: "Robotics and Automation Society" },
+{ code: "sight", name: "Special Interest Group on Humanitarian Technology" },
+{ code: "sps", name: "Signal Processing Society" },
+{ code: "wie", name: "Women In Engineering" }
+];
+```
+
+### Firebase Storage Structure
+
+```
+firebase-storage/
+├── events/
+│ └── {eventId}.jpg # Event posters
+├── people/
+│ └── {personId}.jpg # Execom member photos
+└── societies/
+├── backgrounds/
+│ └── {societyCode}.jpg
+└── heroes/
+└── {societyCode}.jpg
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+For any queries, contact us on ieee@sahrdaya.ac.in
+
+## 🔗 Links
+
+- [Website](https://ieeesahrdaya.com)
+- [Facebook](https://www.facebook.com/Ieeesahrdaya/)
+- [Instagram](https://www.instagram.com/Ieeesahrdaya/)
+- [LinkedIn](https://www.linkedin.com/company/ieeesahrdaya)
