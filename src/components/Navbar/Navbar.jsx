@@ -81,7 +81,9 @@ const Navbar = () => {
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
       transition={{ duration: 0.5 }}
     >
-      <AnimatedBanner/>
+
+      {/* AnimatedBanner: A component for displaying any special alerts above the navigation bar. Edit and import to include it in code for alertting
+      <AnimatedBanner/> */}
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Left: Logo */}
         <Link href={"/"}>
