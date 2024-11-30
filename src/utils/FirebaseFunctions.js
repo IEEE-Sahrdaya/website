@@ -15,9 +15,10 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { auth, db, storage } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { AboutSectionData } from "@/app/societies/[slug]/data";
+import { uploadToImgBB } from './imgbbUpload';
+
 export const handleLogin = async (formData) => {
   try {
     await setPersistence(auth, browserLocalPersistence);
@@ -43,13 +44,9 @@ export const getSociety = async (userId) => {
 };
 
 export const createEvent = async (formData, Poster) => {
-  const timestamp = Date.now();
-  const fileName = `events/${timestamp}.${Poster.name.split(".")[1]}`;
-  const fileRef = ref(storage, fileName);
   try {
-    await uploadBytes(fileRef, Poster);
-    const fileLink = await getDownloadURL(fileRef);
-    const updatedFormData = { ...formData, mediaPath: fileLink };
+    const imageUrl = await uploadToImgBB(Poster);
+    const updatedFormData = { ...formData, mediaPath: imageUrl };
     await addDoc(collection(db, "events"), updatedFormData);
   } catch (error) {
     throw new Error(error.message);
@@ -102,13 +99,9 @@ export const fetchAllEvents = (handleEventsUpdate) => {
 };
 
 export const createPerson = async (formData, Picture) => {
-  const timestamp = Date.now();
-  const fileName = `members/${timestamp}.${Picture.name.split(".")[1]}`;
-  const fileRef = ref(storage, fileName);
   try {
-    await uploadBytes(fileRef, Picture);
-    const fileLink = await getDownloadURL(fileRef);
-    const updatedFormData = { ...formData, mediaPath: fileLink };
+    const imageUrl = await uploadToImgBB(Picture);
+    const updatedFormData = { ...formData, mediaPath: imageUrl };
     await addDoc(collection(db, "members"), updatedFormData);
   } catch (error) {
     throw new Error(error.message);
@@ -194,46 +187,29 @@ export const fetchSocietyData = async (societyKey) => {
 export const updateSocietyData = async (society, newData) => {
   try {
     const userRef = doc(db, "users", society);
-
-    // First, get the current document data
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
       throw new Error("Society document does not exist!");
     }
 
-    // Prepare the update object
     const updateObject = {
       aboutText: newData.aboutText,
     };
 
-    // Handle background image upload
     if (newData.backgroundImage instanceof File) {
-      const bgImageRef = ref(storage, `society/${society}/background_image`);
-      await uploadBytes(bgImageRef, newData.backgroundImage);
-      updateObject.BgImagePath = await getDownloadURL(bgImageRef);
+      updateObject.BgImagePath = await uploadToImgBB(newData.backgroundImage);
     } else if (typeof newData.backgroundImage === "string") {
       updateObject.BgImagePath = newData.backgroundImage;
     }
 
-    // Handle hero image upload
     if (newData.heroImage instanceof File) {
-      const heroImageRef = ref(storage, `society/${society}/hero_image`);
-      await uploadBytes(heroImageRef, newData.heroImage);
-      updateObject.HeroImagePath = await getDownloadURL(heroImageRef);
+      updateObject.HeroImagePath = await uploadToImgBB(newData.heroImage);
     } else if (typeof newData.heroImage === "string") {
       updateObject.HeroImagePath = newData.heroImage;
     }
 
-    // Remove any undefined fields to avoid overwriting with undefined
-    Object.keys(updateObject).forEach(
-      (key) => updateObject[key] === undefined && delete updateObject[key]
-    );
-
-    // Update only the specified fields
     await updateDoc(userRef, updateObject);
-
-    console.log("Society data updated successfully");
     return updateObject;
   } catch (error) {
     console.error("Error updating society data:", error);

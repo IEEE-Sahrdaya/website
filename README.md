@@ -111,7 +111,7 @@ title: String,
 description: String,
 date: String, // Format: "YYYY-MM-DD"
 society: String, // Society code (e.g., "cs", "wie")
-mediaPath: String // URL to event poster in Firebase Storage
+mediaPath: String // URL to event poster in imgbb
 }
 ```
 ```
@@ -158,19 +158,12 @@ const SOCIETIES_MAP = [
 ];
 ```
 
-### Firebase Storage Structure
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
 
 ```
-firebase-storage/
-├── events/
-│ └── {eventId}.jpg # Event posters
-├── people/
-│ └── {personId}.jpg # Execom member photos
-└── societies/
-├── backgrounds/
-│ └── {societyCode}.jpg
-└── heroes/
-└── {societyCode}.jpg
+NEXT_PUBLIC_IMGBB_API_KEY=IMGBB_API_KEY
 ```
 
 ## 🤝 Contributing
@@ -191,3 +184,4 @@ For any queries, contact us on ieee@sahrdaya.ac.in
 - [Facebook](https://www.facebook.com/Ieeesahrdaya/)
 - [Instagram](https://www.instagram.com/Ieeesahrdaya/)
 - [LinkedIn](https://www.linkedin.com/company/ieeesahrdaya)
+
