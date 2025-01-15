@@ -160,8 +160,8 @@ const sortedSocieties = Object.entries(societies).sort((a, b) => {
   });
   return (
     <>
+    <Navbar />
       <PageContainer>
-        <Navbar />
         <Title>Execom Members 2024-25</Title>
         {sortedSocieties.map(([society, members]) => (
           <SocietySection key={society}>

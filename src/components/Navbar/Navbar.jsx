@@ -24,13 +24,14 @@ const societies = [
   { code: "wie", name: "Women In Engineering" },
 ];
 
-const NavLink = ({ href, children, onClick }) => (
+const NavLink = ({ href, children, onClick, target }) => (
   <motion.a
     href={href}
     className="text-blue-600 hover:text-blue-900 text-lg"
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.95 }}
     onClick={onClick}
+    target={target}
   >
     {children}
   </motion.a>
@@ -157,6 +158,7 @@ const Navbar = () => {
           <NavLink href="/execom">Execom</NavLink>
           <NavLink href="/gallery">Gallery</NavLink>
           <NavLink href="/contact">Contact Us</NavLink>
+          <NavLink href="https://heyzine.com/flip-book/e953ed909c.html" target="_blank">INSPIRA</NavLink>
         </div>
 
         {/* Right: Join Button (Desktop) and Hamburger Menu (Mobile) */}
