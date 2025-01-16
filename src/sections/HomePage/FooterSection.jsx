@@ -58,7 +58,7 @@ function FooterSection() {
             <Link href={"https://www.ieeer10.org/"}>
               <p className="hover:underline">&gt; IEEE Region R10</p>
             </Link>
-            <Link href={"https://heyzine.com/flip-book/e953ed909c.html"} target="_blank">
+            <Link href={"https://heyzine.com/flip-book/97d868213f.html"} target="_blank">
               <p className="hover:underline">&gt; INSPIRA: The IEEE Sahrdaya SB Magazine</p>
             </Link>
             <Link href={"https://sahrdaya.ac.in"}>

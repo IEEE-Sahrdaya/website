@@ -158,7 +158,7 @@ const Navbar = () => {
           <NavLink href="/execom">Execom</NavLink>
           <NavLink href="/gallery">Gallery</NavLink>
           <NavLink href="/contact">Contact Us</NavLink>
-          <NavLink href="https://heyzine.com/flip-book/e953ed909c.html" target="_blank">INSPIRA</NavLink>
+          <NavLink href="https://heyzine.com/flip-book/97d868213f.html" target="_blank">INSPIRA</NavLink>
         </div>
 
         {/* Right: Join Button (Desktop) and Hamburger Menu (Mobile) */}
