@@ -251,6 +251,9 @@ const Navbar = () => {
               <NavLink href="/contact" onClick={toggleMobileMenu}>
                 Contact Us
               </NavLink>
+              <NavLink href="https://heyzine.com/flip-book/97d868213f.html" target="_blank">
+                INSPIRA
+              </NavLink>
               <motion.a
                 href="/signin"
                 className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-lg text-center"
