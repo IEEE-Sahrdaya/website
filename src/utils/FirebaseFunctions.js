@@ -133,9 +133,11 @@ export const fetchPeopleBySociety = (society, handlePeopleUpdate) => {
     // Custom sorting function
     const sortOrder = {
       "Branch Counsellor": 1,
-      Chairperson: 2,
+      "Chairperson": 2,
       "Vice Chairperson": 3,
-      Secretary: 4,
+      "Secretary": 4,
+      "Joint Secretary": 5,
+      "Treasurer": 6,
     };
 
     people.sort((a, b) => {

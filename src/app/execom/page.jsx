@@ -162,7 +162,7 @@ const sortedSocieties = Object.entries(societies).sort((a, b) => {
     <>
     <Navbar />
       <PageContainer>
-        <Title>Execom Members 2024-25</Title>
+        <Title>Execom Members 2025-26</Title>
         {sortedSocieties.map(([society, members]) => (
           <SocietySection key={society}>
             <SocietyTitle>{society.toUpperCase()} Execom</SocietyTitle>

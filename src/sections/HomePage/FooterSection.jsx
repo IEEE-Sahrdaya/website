@@ -72,7 +72,7 @@ function FooterSection() {
           <p className="font-bold text-lg mb-4 ">Contact Us</p>
           <div className="flex flex-col gap-2 mb-6">
             <p>Anil Antony - +91 97462 22670</p>
-            <p>Robin Francis - +91 80782 56598</p>
+            <p>Vishnu Gopal - +91 98475 70094</p>
           </div>
           <div className="flex space-x-4">
             <Link href={"https://www.facebook.com/Ieeesahrdaya/"}>
